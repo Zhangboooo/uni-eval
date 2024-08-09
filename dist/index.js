@@ -2214,7 +2214,8 @@ const Ar = Mr("counter", () => {
     e.value++;
   }
   return { count: e, doubleCount: t, increment: n };
-});
+}), Fr = "bar";
 export {
+  Fr as foo,
   Ar as useCounterStore
 };
