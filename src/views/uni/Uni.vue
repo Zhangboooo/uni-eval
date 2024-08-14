@@ -5,6 +5,10 @@ import LossItemView from './loss/LossView.vue'
 import { useRouteQuery } from '@vueuse/router'
 import GraphView from '@/views/uni/graph/GraphView.vue'
 const activeKey = useRouteQuery('action', 'vehicle')
+
+defineProps<{
+  lossNo: string
+}>()
 </script>
 
 <template>
