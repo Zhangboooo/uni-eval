@@ -6,17 +6,26 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
+import UnoCSS from 'unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    port: 3000,
+    port: 3000
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'lib/main.ts'),
-      name: 'UniEval',
-      fileName: 'index',
+      entry: {
+        index: resolve(__dirname, 'lib/index.ts'),
+        core: resolve(__dirname, 'lib/core.ts'),
+        components: resolve(__dirname, 'lib/component.ts'),
+        page: resolve(__dirname, 'lib/page.ts')
+      },
+      name: 'UniEval'
+      // formats: ['es', 'cjs']
+      // fileName: (format, entryName) => {
+      //   return `${entryName}.${format === 'cjs' ? 'cjs' : 'js'}`
+      // }
     }
   },
   plugins: [
@@ -24,8 +33,9 @@ export default defineConfig({
     vueJsx(),
     vueDevTools(),
     dts({
-      tsconfigPath: resolve(__dirname, 'tsconfig.app.json'),
+      tsconfigPath: resolve(__dirname, 'tsconfig.app.json')
     }),
+    UnoCSS()
   ],
   resolve: {
     alias: {

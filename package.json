@@ -5,12 +5,27 @@
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "types": "./dist/lib/main.d.ts",
+  "types": "./dist/lib/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/lib/main.d.ts",
+      "types": "./dist/lib/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.umd.cjs"
+      "require": "./dist/index.cjs"
+    },
+    "./core": {
+      "types": "./dist/lib/core.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs"
+    },
+    "./component": {
+      "types": "./dist/lib/component.d.ts",
+      "import": "./dist/component.js",
+      "require": "./dist/component.cjs"
+    },
+    "./page": {
+      "types": "./dist/lib/page.d.ts",
+      "import": "./dist/page.js",
+      "require": "./dist/page.cjs"
     }
   },
   "scripts": {
@@ -26,7 +41,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@arco-design/web-vue": "^2.56.0",
+    "@vueuse/core": "^10.11.1",
+    "@vueuse/router": "^10.11.1",
+    "lodash-es": "^4.17.21",
+    "overlayscrollbars": "^2.10.0",
+    "overlayscrollbars-vue": "^0.5.9",
     "pinia": "^2.1.7",
+    "splitpanes": "^3.1.5",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
@@ -35,6 +57,7 @@
     "@tsconfig/node20": "^20.1.4",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20.14.5",
+    "@types/splitpanes": "^2.2.6",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "@vue/eslint-config-prettier": "^9.0.0",
@@ -50,6 +73,7 @@
     "prettier": "^3.2.5",
     "start-server-and-test": "^2.0.4",
     "typescript": "~5.4.0",
+    "unocss": "^0.61.9",
     "vite": "^5.3.1",
     "vite-plugin-dts": "^4.0.1",
     "vite-plugin-vue-devtools": "^7.3.1",
