@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.56.0",
+    "@mdi/font": "^7.4.47",
     "@vueuse/core": "^10.11.1",
     "@vueuse/router": "^10.11.1",
     "lodash-es": "^4.17.21",
@@ -49,10 +50,15 @@
     "overlayscrollbars-vue": "^0.5.9",
     "pinia": "^2.1.7",
     "splitpanes": "^3.1.5",
+    "uni-eval": "github:Zhangboooo/uni-eval",
+    "unplugin-fonts": "^1.1.1",
+    "vite-plugin-vuetify": "^2.0.4",
     "vue": "^3.4.29",
-    "vue-router": "^4.3.3"
+    "vue-router": "^4.3.3",
+    "vuetify": "^3.7.1"
   },
   "devDependencies": {
+    "@mdi/js": "^7.4.47",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/jsdom": "^21.1.7",
@@ -71,6 +77,8 @@
     "jsdom": "^24.1.0",
     "npm-run-all2": "^6.2.0",
     "prettier": "^3.2.5",
+    "sass": "^1.77.8",
+    "sass-embedded": "^1.77.8",
     "start-server-and-test": "^2.0.4",
     "typescript": "~5.4.0",
     "unocss": "^0.61.9",

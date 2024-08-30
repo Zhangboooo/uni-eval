@@ -20,54 +20,50 @@ watch(activeLossItemKey, (val) => (activeAddedLossItemKey.value = val))
 </script>
 
 <template>
-  <splitpanes ref="splitRef" class="default-theme" horizontal>
+  <splitpanes ref="splitRef" class="default-theme flex-1" horizontal>
     <pane :size="100 - size">
-      <a-tabs class="tabs" justify animation v-model:active-key="activeLossItemKey">
-        <template #extra> </template>
-        <a-tab-pane key="part" title="配件"> Content of Tab Panel 1 </a-tab-pane>
-        <a-tab-pane key="hour" title="工时"> Content of Tab Panel 2 </a-tab-pane>
-        <a-tab-pane key="mate" title="辅料"> Content of Tab Panel 2 </a-tab-pane>
-        <a-tab-pane key="outer" title="外修"> Content of Tab Panel 2 </a-tab-pane>
-      </a-tabs>
+      <div class="flex align-center bg-primary p-x-8">
+        <v-chip prepend-icon="mdi-list-status" variant="text"> 损失项列表： </v-chip>
+        <v-tabs class="flex-1" v-model="activeLossItemKey">
+          <v-tab value="part">配件 </v-tab>
+          <v-tab value="hour">工时 </v-tab>
+          <v-tab value="mate">辅料 </v-tab>
+          <v-tab value="outer">外修 </v-tab>
+        </v-tabs>
+        <v-btn-group>
+          <v-btn variant="plain" color="white">自定义</v-btn>
+        </v-btn-group>
+      </div>
+
+      <v-tabs-window v-model="activeLossItemKey">
+        <v-tabs-window-item value="part">peijian</v-tabs-window-item>
+        <v-tabs-window-item value="hour">gongshi</v-tabs-window-item>
+        <v-tabs-window-item value="mate">fuliao</v-tabs-window-item>
+        <v-tabs-window-item value="outer">waixiu</v-tabs-window-item>
+      </v-tabs-window>
     </pane>
     <pane :min-size="minSize" :max-size="maxSize" v-model:size="size">
-      <a-tabs class="tabs" justify animation v-model:active-key="activeAddedLossItemKey">
-        <template #extra>
-          <a-button v-if="size === minSize" @click="size = maxSize">
-            展开
-            <icon-up />
-          </a-button>
-          <a-button v-if="size === maxSize" @click="size = minSize">
-            收起
-            <icon-down />
-          </a-button>
-        </template>
-        <a-tab-pane disabled>
-          <template #title>
-            <div>已添加配件</div>
-          </template>
-        </a-tab-pane>
-        <a-tab-pane key="part" title="配件"> Content of Tab Panel 1 </a-tab-pane>
-        <a-tab-pane key="hour" title="工时"> Content of Tab Panel 2 </a-tab-pane>
-        <a-tab-pane key="mate" title="辅料"> Content of Tab Panel 2 </a-tab-pane>
-        <a-tab-pane key="outer" title="外修"> Content of Tab Panel 2 </a-tab-pane>
-      </a-tabs>
+      <div class="flex align-center p-x-8">
+        <v-chip prepend-icon="mdi-list-box-outline" variant="text"> 已添加损失项： </v-chip>
+        <v-tabs v-model="activeAddedLossItemKey" class="flex-1">
+          <v-tab value="part">配件 </v-tab>
+          <v-tab value="hour">工时 </v-tab>
+          <v-tab value="mate">辅料 </v-tab>
+          <v-tab value="outer">外修 </v-tab>
+        </v-tabs>
+        <div>
+          <v-btn v-if="size === minSize" @click="size = maxSize"> 展开 </v-btn>
+          <v-btn v-if="size === maxSize" @click="size = minSize"> 收起 </v-btn>
+        </div>
+      </div>
+      <v-tabs-window v-model="activeAddedLossItemKey">
+        <v-tabs-window-item value="part">配件1</v-tabs-window-item>
+        <v-tabs-window-item value="hour">工时1</v-tabs-window-item>
+        <v-tabs-window-item value="mate">辅料1</v-tabs-window-item>
+        <v-tabs-window-item value="outer">外修1</v-tabs-window-item>
+      </v-tabs-window>
     </pane>
   </splitpanes>
 </template>
 
-<style scoped lang="postcss">
-.tabs
-  :deep(
-    .arco-tabs-nav
-      > .arco-tabs-nav-tab
-      > .arco-tabs-nav-tab-list
-      > .arco-tabs-tab:first-of-type.arco-tabs-tab-disabled
-  ) {
-  color: revert;
-  cursor: revert;
-}
-:deep(.arco-tabs-tab-title) {
-  padding: 0 30px;
-}
-</style>
+<style scoped lang="postcss"></style>

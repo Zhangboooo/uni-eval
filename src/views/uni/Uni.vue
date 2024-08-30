@@ -12,61 +12,71 @@ defineProps<{
 </script>
 
 <template>
-  <a-layout class="h-full">
-    <a-layout-header v-if="false" class="h-54px flex justify-between items-center">
-      <div>logo</div>
-      <div class="h-full">
-        <a-button class="!h-full !px-8">
-          <template #icon><icon-launch /></template>
-          帮助
-        </a-button>
-        <a-dropdown position="br">
-          <a-button class="!h-full !px-8">
-            <template #icon><icon-settings /></template>
-            设置
-          </a-button>
-          <template #content>
-            <a-doption>Option 1</a-doption>
-            <a-doption>Option 2</a-doption>
-            <a-doption>Option 3</a-doption>
+  <v-app class="h-full">
+    <v-app-bar v-if="true">
+      <template v-slot:prepend>
+        <v-app-bar-nav-icon>
+          <img class="w-full" src="@/assets/logo.svg" alt="logo" />
+        </v-app-bar-nav-icon>
+      </template>
+      <v-app-bar-title>
+        <v-tabs v-model="activeKey">
+          <v-tab value="vehicle"> 定型</v-tab>
+          <v-tab value="graph"> 图形点选</v-tab>
+          <v-tab value="loss">损失项 </v-tab>
+        </v-tabs>
+      </v-app-bar-title>
+
+      <v-btn-group>
+        <v-btn density="default">
+          <template #prepend>
+            <v-icon icon="mdi-school" />
           </template>
-        </a-dropdown>
-      </div>
-    </a-layout-header>
-    <a-layout-content class="overflow-y-hidden">
-      <a-tabs size="large" type="card" v-model:active-key="activeKey" justify animation>
-        <template #extra>
-          <a-space>
-            <a-button>
-              <template #icon><icon-launch /></template>
-              帮助
-            </a-button>
-            <a-dropdown position="br">
-              <a-button>
-                <template #icon><icon-settings /></template>
-                设置
-              </a-button>
-              <template #content>
-                <a-doption>Option 1</a-doption>
-                <a-doption>Option 2</a-doption>
-                <a-doption>Option 3</a-doption>
+          操作指引
+        </v-btn>
+        <v-btn density="default">
+          <template #prepend>
+            <v-icon icon="mdi-help" />
+          </template>
+          帮助
+        </v-btn>
+        <v-menu position="br">
+          <template #activator="{ props }">
+            <v-btn v-bind="props">
+              <template #prepend>
+                <v-icon icon="mdi-cog" />
               </template>
-            </a-dropdown>
-            <a-button type="primary"> 提交 </a-button>
-          </a-space>
-        </template>
-        <a-tab-pane key="vehicle" title="定型">
+              设置
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item>
+              <v-list-item-title>list-item-title-1</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>list-item-title-2</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>list-item-title-3</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-btn-group>
+    </v-app-bar>
+    <v-main style="height: calc(100% - 64px)">
+      <v-tabs-window v-model="activeKey" class="h-full">
+        <v-tabs-window-item value="vehicle">
           <VehicleView />
-        </a-tab-pane>
-        <a-tab-pane key="graph" title="图形点选">
+        </v-tabs-window-item>
+        <v-tabs-window-item value="graph" class="h-full">
           <GraphView />
-        </a-tab-pane>
-        <a-tab-pane key="loss" title="损失项">
+        </v-tabs-window-item>
+        <v-tabs-window-item value="loss" class="h-full">
           <LossItemView />
-        </a-tab-pane>
-      </a-tabs>
-    </a-layout-content>
-  </a-layout>
+        </v-tabs-window-item>
+      </v-tabs-window>
+    </v-main>
+  </v-app>
 </template>
 
 <style lang="postcss" scoped></style>

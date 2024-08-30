@@ -7,6 +7,8 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
 import UnoCSS from 'unocss/vite'
+import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import Fonts from 'unplugin-fonts/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -29,14 +31,39 @@ export default defineConfig({
     }
   },
   plugins: [
-    vue(),
+    vue({
+      template: { transformAssetUrls }
+    }),
     vueJsx(),
     vueDevTools(),
+    Vuetify({
+      autoImport: true,
+      styles: {
+        configFile: 'src/styles/vuetify/settings.scss'
+      }
+    }),
+    Fonts({
+      google: {
+        families: [
+          {
+            name: 'Roboto',
+            styles: 'wght@100;300;400;500;700;900'
+          }
+        ]
+      }
+    }),
     dts({
       tsconfigPath: resolve(__dirname, 'tsconfig.app.json')
     }),
     UnoCSS()
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
